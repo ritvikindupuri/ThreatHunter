@@ -5,6 +5,8 @@ This project represents an **AI-driven security operations (SecOps) pipeline** d
 
 The solution addresses a critical SOC challenge: **Alert Fatigue and Latency**. Instead of manual review, the system applies a custom Python-based scoring algorithm to cross-validate threats, filtering out noise and only triggering alerts for high-fidelity indicators of compromise (IOCs). This ensures 24/7 monitoring with near-zero manual intervention.
 
+**🚀 [Launch Live Workflow](https://chat.lindy.ai/home/?templateId=6980db9d1750af29cc55dde6)**
+
 ## Technical Architecture & Workflow
 
 The system operates on a recurring cron schedule (Every 6 hours), utilizing a multi-step orchestration graph to process intelligence.
