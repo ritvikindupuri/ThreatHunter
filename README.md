@@ -5,7 +5,7 @@ This project represents an **AI-driven security operations (SecOps) pipeline** d
 
 The solution addresses a critical SOC challenge: **Alert Fatigue and Latency**. Instead of manual review, the system applies a custom Python-based scoring algorithm to cross-validate threats, filtering out noise and only triggering alerts for high-fidelity indicators of compromise (IOCs). This ensures 24/7 monitoring with near-zero manual intervention.
 
-**🚀 [Launch Live Workflow](https://chat.lindy.ai/home/?templateId=6980db9d1750af29cc55dde6)**
+** [Launch Live Workflow](https://chat.lindy.ai/home/?templateId=6980db9d1750af29cc55dde6)**
 
 ## Technical Architecture & Workflow
 
@@ -39,6 +39,12 @@ The core of the system is its ability to not just *find* data, but *understand* 
 * **Multi-Source Ingestion:** The system parses raw JSON responses from `urlscan.io` and correlates them with `AbuseIPDB` reputation scores.
 * **AI Contextualization:** Instead of just listing an IP, the system uses **Perplexity AI** integration to research the specific campaign (e.g., "Coinbase Phishing") and identify associated TTPs (Tactics, Techniques, and Procedures).
 * **Filtering:** Note the query parameters in Figure 2 (`filter: day`, `tokens: 1000`), ensuring the system processes only the freshest intelligence to minimize latency.
+
+### Threat Scoring Logic
+To eliminate false positives, the system employs a multi-factor weighted algorithm:
+* **Baseline:** Assigns a base score (5/10) to any detected anomaly.
+* **Contextual Boosts:** Adds points for confirmed phishing keyword patterns (+3), activity within the last 24 hours (+2), and corroboration across multiple intelligence feeds (+1).
+* **Thresholding:** A strict filter is applied where only threats with a composite score of **≥ 7/10** trigger an alert.
 
 ## Actionable Alerting & Reporting
 
