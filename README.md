@@ -5,7 +5,7 @@ This project represents an **AI-driven security operations (SecOps) pipeline** d
 
 The solution addresses a critical SOC challenge: **Alert Fatigue and Latency**. Instead of manual review, the system applies a custom Python-based scoring algorithm to cross-validate threats, filtering out noise and only triggering alerts for high-fidelity indicators of compromise (IOCs). This ensures 24/7 monitoring with near-zero manual intervention.
 
-**[Launch Live Workflow](https://chat.lindy.ai/home/?templateId=6980db9d1750af29cc55dde6)**
+** [Launch Live Workflow](https://chat.lindy.ai/home/?templateId=6980db9d1750af29cc55dde6)**
 
 ## Technical Architecture & Workflow
 
@@ -46,6 +46,13 @@ To eliminate false positives, the system employs a multi-factor weighted algorit
 * **Contextual Boosts:** Adds points for confirmed phishing keyword patterns (+3), activity within the last 24 hours (+2), and corroboration across multiple intelligence feeds (+1).
 * **Thresholding:** A strict filter is applied where only threats with a composite score of **≥ 7/10** trigger an alert.
 
+## Validation & Accuracy Assurance
+To ensure the target of **<5% false positives** is met, I validate the system through rigorous controlled testing rather than relying on production assumptions.
+
+* **Ground-Truth Testing:** The pipeline is benchmarked against curated datasets containing a mix of known malicious indicators and verified benign infrastructure. I compare the system’s classifications against these ground-truth labels to calculate precision and False Positive Rates (FPR).
+* **Technical Controls:** Accuracy is mechanistically enforced via **Multi-Source Correlation**. Indicators are only elevated when they appear across multiple intelligence feeds or match known threat actor infrastructure; single-source or low-confidence indicators are deliberately filtered.
+* **Model Governance:** I maintain a feedback loop by periodically reviewing alert outputs and tuning scoring weights based on observed data drift. For enterprise deployment, this framework supports continuous benchmarking against internal telemetry and SOC feedback to track precision/recall trends over time.
+
 ## Actionable Alerting & Reporting
 
 The output of the system is a structured, actionable intelligence report delivered directly to security analysts.
@@ -84,4 +91,4 @@ Beyond detection, the system provides automated remediation steps based on the a
 ## Future Improvements
 * **SIEM Integration:** Forwarding structured JSON alerts directly to Splunk/Sentinel via Webhook.
 * **SOAR Action:** Triggering automated firewall blocks via Palo Alto/CrowdStrike APIs instead of just email alerts.
-* **Historical Trending:** Storing IOCs in a local database to track campaign evolution over weeks.
+* **Historical Trending:** Storing IOCs in a local database to track campaign evolution over weeks.lution over weeks.
